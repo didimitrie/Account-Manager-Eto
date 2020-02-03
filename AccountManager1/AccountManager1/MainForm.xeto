@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Form xmlns="http://schema.picoe.ca/eto.forms" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" Title="Speckle Accounts" ClientSize="450, 450" Padding="20">
+    <TableLayout Spacing="10,10">
+        <TableRow>
+            <Label Text="New Account" VerticalAlignment="Center" Style="large-text"/>
+        </TableRow>
+        <TableRow>
+            <Label TextColor="DimGray" Text="Add a new account by pasting the Speckle Server's url below and clicking the Signin button." Style="small-text" />
+        </TableRow>
+        <TableRow>
+            <TableLayout Spacing="10,3">
+                <TableRow>
+                    <TextBox Width="300" Text="{Binding ServerUrl, Mode = TwoWay}"/>
+                    <Button Text="Signin" Click="HandleLoginClick"/>
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+        <TableRow>
+            <Label TextColor="DimGray" Text="{Binding UrlCheckStatus, Mode = TwoWay}" Style="small-text" />
+        </TableRow>
+        <TableRow><Label Text="Existing Accounts" VerticalAlignment="Center" Style="large-text"/></TableRow>
+        <TableRow>
+            <GridView x:Name="AccountsView" ShowHeader="True" GridLines="None" Border="None" Height="200" CellDoubleClick="AccDoubleClick">
+                
+            </GridView>
+        </TableRow>
+        <TableRow/>
+    </TableLayout>
+    <Form.Menu>
+<!--        <MenuBar>
+            <MenuBar.AboutItem>
+                <ButtonMenuItem Text="About..." Click="HandleAbout" />
+            </MenuBar.AboutItem>
+        </MenuBar>-->
+    </Form.Menu>
+    <!--    <Form.ToolBar>
+        <ToolBar>
+            <ButtonToolItem Text="Click Me!" Click="HandleClickMe" />
+        </ToolBar>
+    </Form.ToolBar>-->
+</Form>

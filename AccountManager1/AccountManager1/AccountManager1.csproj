@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="Eto.Forms" Version="2.5.0-ci-10428" />
+    <PackageReference Include="Eto.Serialization.Xaml" Version="2.5.0-ci-10428" />
+    <PackageReference Include="SpeckleCore" Version="1.7.0-wip" />
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+  </ItemGroup>
+  
+</Project>
