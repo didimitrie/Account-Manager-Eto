@@ -45,7 +45,7 @@ namespace AccountManager1
 
       AccountsView.Columns.Add(new GridColumn() { HeaderText = "Server Name", DataCell = new TextBoxCell("ServerName"), Width = 170, AutoSize = false, Sortable = true });
       AccountsView.Columns.Add(new GridColumn() { HeaderText = "Email", DataCell = new TextBoxCell("Email"), Width = 150, AutoSize = false, Sortable = true });
-      AccountsView.Columns.Add(new GridColumn() { HeaderText = "Default", DataCell = new CheckBoxCell("Default") { }, Editable = true, Sortable = true });
+      AccountsView.Columns.Add(new GridColumn() { HeaderText = "Default", DataCell = new CheckBoxCell("Default"), Editable = true, Sortable = true });
       AccountsView.Columns.Add(new GridColumn() { HeaderText = "Delete", DataCell = new DeleteCell() });
 
       SetAccViewDataStore();
@@ -77,7 +77,7 @@ namespace AccountManager1
           accW.Default = false;
         }
       }
-      AccountsView.DataStore = filteredCollection;
+      filteredCollection.Refresh();
     }
 
     protected void HandleLoginClick(object sender, EventArgs e)
@@ -103,7 +103,7 @@ namespace AccountManager1
 
     protected override Control OnCreateCell(CellEventArgs args)
     {
-      var control = new Button() { Text = "🚫", Size = new Size(10, 10), BackgroundColor = new Color(155, 155, 155, 0) };
+      var control = new Button() { Text = "🚫", Size = new Size(10, 10) };
       control.BindDataContext(c => c.Command, (AccountGridItem acc) => acc.DeleteAccount);
       return control;
     }
@@ -352,7 +352,10 @@ namespace AccountManager1
         if (value == true)
         {
           LocalContext.SetDefaultAccount(Account);
-          Parent.HandleAccDefaultSet(Account.AccountId);
+          Application.Instance.Invoke(() =>
+          {
+            Parent.HandleAccDefaultSet(Account.AccountId);
+          });
         }
         LocalContext.UpdateAccount(Account);
         NotifyPropertyChanged();
